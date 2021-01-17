@@ -720,7 +720,7 @@
 
         <p>Click the refresh button to load sample:  </p>
         <p>
-          <button class="btn btn-sm btn-info" onclick="create_table('test_app/api/controllers/array_test.php','the_table');"><i class="fa fa-refresh"></i></button>
+          <button class="btn btn-sm btn-info" onclick="create_table('controllers/users/load_user.php','the_table');"><i class="fa fa-refresh"></i></button>
           <button class="btn btn-sm btn-danger" onclick="$('#the_table').html('');"><i class="fa fa-times"></i></button>
         </p>
         <hr>
