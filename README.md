@@ -5,3 +5,5 @@ It works with json,temporal storage,sweet alert,toaster,font awesome, and the jq
 Always remember to load the jquery library first before any other javascript file and the kings library last after all other javacript files
 
 Feel free to contribute to it 
+
+view documentation on https://kingslibrary.herokuapp.com/
