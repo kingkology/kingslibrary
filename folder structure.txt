@@ -1,0 +1,18 @@
+Folder and coding structure
+
+Assest : Contains all assets such as ; pictures, css,fonts,icons,javascript, libraries,plugins etc
+
+Config: Contains database configuration
+
+models : Contains all classes (object templates, object properties, sql queries) of components being used in a project. eg. User class, product class
+
+Views : Contains all interfaces grouped into user types and further into components 
+
+Controllers : Contains backend codes that receives data from the front end(views) and processes it to be sent to (models) for conducting queries. Also it receives responses from models and formats and send the appropriate response to the front end along with appropriate http codes.
+
+index : This is the landing page. it can either be a login page, signup page or informational page.
+
+
+The template contains samples of how the coding structure should be.
+
+Incase there needs to be a mixture of front end codes in a controller, keep your backend logic separated from the front end eg. keep al logic above the page and only insert needed values in places where needed.
