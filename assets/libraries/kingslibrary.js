@@ -3,7 +3,7 @@ Welcome to the kings library.
 This is a dynamic library to take care of all front end to backend communications. 
 it works with json,temporal storage,sweet alert, and the jquery library
 
-Feel free to contribute to it on github @
+Feel free to contribute to it on github @ https://github.com/kingkology/kingslibrary
 */
 
 
