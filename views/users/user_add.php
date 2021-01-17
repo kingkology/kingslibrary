@@ -80,7 +80,7 @@ http_response_code(200);
 
 	   
 
-	    <a class="btn btn-info btn-lg my-4" onclick="insert_data('https://coptgmdenass.org/api/controllers/add_user.php','user_add_form');">Add User</a>
+	    <a class="btn btn-info btn-lg my-4" onclick="insert_data('controllers/users/add_user.php','user_add_form');">Add User</a>
 
 	</form>
 
