@@ -544,7 +544,6 @@
                       </code>
                   </pre> 
                 </p>
-                  <p>set response code - 201 eg: http_response_code(201);</code> `. </p>
                   <h3>NB: This does not submit images</h3>
                   <br>
                   <p>Click the refresh button to load sample:  </p>
@@ -570,7 +569,7 @@
         <h2> 1. <u><b>Creating a table</b></u> &nbsp;</h2>
         <p>To create a table, you first need to call the function <code>create_table('url','display_location')</code></p>
         <p>As you can see, the <code>create_table()</code> function takes 2 arguments which are;</p>
-        <p>1. (url) the data generating url (api) eg: <code>'test_app/api/controllers/array_test.php'</code></p>
+        <p>1. (url) the data generating url (api) eg: <code>'controllers/users/load_user.php'</code></p>
         <p>2. (display_location) where to diplay the response eg: id of a div or id of an html element(table) </p>
         <p>eg: <code>onclick="create_table('test_app/api/controllers/array_test.php','the_table');"</code></p><br>
         <p>A. The function expects a json response from your api <br>` <code>header("Content-Type:application/json");</code> `. This response needs to define the table headers in the first index of the json response </p>
@@ -588,7 +587,137 @@
         <p><code>$data[]=$data_item;</code></p>
         <p><code>$response[]=$data;</code></p>
         <br>
-        <p>set response code - 200 eg: http_response_code(200);</code> `. </p>
+
+        <p><b><u>HTML form example</u></b></p>
+        <pre  align="left" style="color:red">
+            &lt;div class="col-md-12 mb-4"  style="overflow-x: auto;overflow-y: auto;"&gt
+              &lt;table class="table table-hover table-bordered" id="the_table"&gt
+              
+            &lt;/table&gt
+          &lt;/div&gt
+        </pre>
+
+        <br>
+        
+
+          <br>
+          <p><b><u>PHP controller example</u></b></p>
+
+          <p> 
+            <pre align="left" style="color:red">
+              <code>
+                
+                &lt;php 
+                session_start();
+                //header for get api
+                // use * under allow access control origin because we will not be accepting any api key using tokens or authorisations
+                header("Access-Control-Allow-Origin: *");
+                header("Content-Type: application/json; charset=UTF-8");
+                header("Access-Control-Allow-Methods: GET");
+                header("Access-Control-Max-Age: 3600");
+                header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+                //include our required classes
+                    include '../../config/Database.php';
+                    include '../../models/User.php';
+
+
+                    $dt=new DateTime('now', new DateTimezone('Africa/Accra'));
+                    $ladate = $dt->format('Y-m-d');
+                    $latodayz = $ladate;
+                    $ladatez = $dt->format('Y-m-d H:i:s');
+                    $latimez = $dt->format('H:i:s');
+
+
+                    //instantiate database and connect
+                    $database=new Database();
+                    $db=$database->connect('default');
+
+                    //instantiate data object and assign the connectio to it
+                    $data=new User();
+
+                    //DECLARE EMPTY ARRAY
+                  $response=array();
+                  //DECLARE AUTO COUNT
+                  $auto_count=0;
+
+                  //data query
+                    $result = $data->fetch_all($db);
+                    if ($result) 
+                    {
+                      $num = $result->num_rows;
+                        //check if results were returned and assign to array
+                        if ($num > 0) 
+                        {
+                          $data_item=array("th1" =>"N0", "th2" =>"VIEW", "th3" =>"REMOVE","th4" =>"NAME" ,"th5" =>"GENDER","th6" =>"LOCATION","th7" =>"HOBBIES","th8" =>"DATE ADDED" );
+                          $new_data[]=$data_item;
+                          $response[]=$new_data;
+                          while ($stmt = $result->fetch_assoc()) 
+                          {
+                            $auto_count=$auto_count+1;
+                            $new_data=array();
+
+                            $the_id=$stmt['auto_id'];
+
+                            $data_item=array("type" =>"text","name" =>"no".$auto_count,"id" =>"no".$the_id ,"value" =>$auto_count);
+                        $new_data[]=$data_item;
+
+                        $data_item=array("type" =>"button","name" =>"view".$the_id,"id" =>"view".$the_id ,"value" =>"<i class='fa fa-eye'></i>", "additional_properties"=>"onclick='view_details(".$the_id.")' class='btn btn-info btn-sm my-4' color:white ");
+                        $new_data[]=$data_item;
+
+                        $data_item=array("type" =>"button","name" =>"delete".$the_id,"id" =>"delete".$the_id ,"value" =>"<i class='fa fa-times'></i>", "additional_properties"=>" onclick='remove(".$the_id.")' class='btn btn-danger btn-sm my-4' style=color:black ");
+                        $new_data[]=$data_item;
+
+                        $data_item=array("type" =>"text","name" =>"name".$the_id,"id" =>"name".$the_id ,"value" =>$stmt['user_name'] );
+                        $new_data[]=$data_item;
+
+                        $data_item=array("type" =>"text","name" =>"gender".$the_id,"id" =>"gender".$the_id ,"value" =>$stmt['user_type'] );
+                        $new_data[]=$data_item;
+
+                        $data_item=array("type" =>"text","name" =>"location".$the_id,"id" =>"location".$the_id ,"value" =>$stmt['user_location'] );
+                        $new_data[]=$data_item;
+
+                        $data_item=array("type" =>"text","name" =>"hobby".$the_id,"id" =>"hobby".$the_id ,"value" =>$stmt['user_hobbies'] );
+                        $new_data[]=$data_item;
+
+                        $data_item=array("type" =>"text","name" =>"date".$the_id,"id" =>"date".$the_id ,"value" =>$stmt['date_added']." ".$stmt['time_added'] );
+                        $new_data[]=$data_item;
+
+                        $response[]=$new_data;
+
+                          }
+
+                          // set response code - 200 ok
+                          http_response_code(200);
+                          echo json_encode($response);
+
+                        }
+                        else
+                        {
+                            // set response code - 404 not found
+                          http_response_code(404);
+                          // tell the user
+                          echo json_encode(array("message" => "No Data Found"));
+                          return;
+                        }
+                    }
+                    else
+                    {
+                        // set response code - 404 not found
+                        http_response_code(404);
+                        // tell the user
+                        echo json_encode(array("message" => "No Data Found"));
+                        return;
+                    }
+
+
+                ?&gt;
+
+              </code>
+          </pre> 
+        </p>
+
+
         <p>Click the refresh button to load sample:  </p>
         <p>
           <button class="btn btn-sm btn-info" onclick="create_table('test_app/api/controllers/array_test.php','the_table');"><i class="fa fa-refresh"></i></button>
