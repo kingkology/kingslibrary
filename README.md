@@ -6,4 +6,4 @@ Always remember to load the jquery library first before any other javascript fil
 
 Feel free to contribute to it 
 
-view documentation on http://akrotech-001-site1.1tempurl.com/api/
+view documentation on http://akrotech-001-site1.1tempurl.com/api/index.php
