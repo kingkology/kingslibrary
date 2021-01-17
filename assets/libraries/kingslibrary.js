@@ -459,7 +459,7 @@ function create_table(url,display_location,start,limit)
 	        	{
 	        		let new_start=((start*1)+(limit*1)+(1*1));
 	        		let old_start=((start*1)-(limit*1)-(1*1));
-	        		table_body=table_body+'<tr><td colspan=2><button type="button" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-arrow-left" onclick="create_table(\''+url+'\',\''+display_location+'\','+old_start+','+limit+')"></i></button><button type="button" class="btn btn-dark btn-rounded btn-icon" onclick="create_table(\''+url+'\',\''+display_location+'\','+new_start+','+limit+')"><i class="mdi mdi-arrow-right-bold"></i></button></tr></td></tbody>';
+	        		table_body=table_body+'<tr><td colspan=2><button type="button" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-arrow-left" onclick="create_table(\''+url+'\',\''+display_location+'\','+old_start+','+limit+')"></i></button><button type="button" class="btn btn-sm btn-info waves-effect waves-light" onclick="create_table(\''+url+'\',\''+display_location+'\','+new_start+','+limit+')"><i class="mdi mdi-arrow-right-bold"></i></button></tr></td></tbody>';
 	        	}
 	        	
 	        	response=table_header+table_body;
