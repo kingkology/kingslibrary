@@ -9,8 +9,9 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 //include our required classes
-    include '../config/Database.php';
-    include '../models/Data.php';
+    include '../../config/Database.php';
+     include '../../models/User.php';
+
 
     $dt=new DateTime('now', new DateTimezone('Africa/Accra'));
     $ladate = $dt->format('Y-m-d');
@@ -24,7 +25,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     $db=$database->connect('default');
 
     //instantiate data object and assign the connectio to it
-    $data=new Data();
+    $data=new User();
 
     //DECLARE EMPTY ARRAY
 	$response=array();

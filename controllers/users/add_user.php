@@ -8,8 +8,8 @@
   header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
     //include our required classes
-    include '../config/Database.php';
-    include '../models/User.php';
+    include '../../config/Database.php';
+     include '../../models/User.php';
 
     $dt=new DateTime('now', new DateTimezone('Africa/Accra'));
     $ladate = $dt->format('Y-m-d');

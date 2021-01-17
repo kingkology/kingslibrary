@@ -22,9 +22,6 @@ class User
 
     public $QUERY_VALUE;
 
-    public $DATE_FROM;
-    public $DATE_TO;
-    public $QUERY_VALUE;
 
     public $START;
     public $LIMIT;
