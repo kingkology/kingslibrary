@@ -106,7 +106,7 @@ class User
     {
         $this->con= $db;
 
-        $query='SELECT * from data where (user_id = "'.$this->DATA_ID.'" OR user_contact = "'.$this->DATA_CONTACT.'" ) AND user_password="'.$this->DATA_PASSWORD.'" ';
+        $query='SELECT * from data where (user_email = "'.$this->DATA_EMAIL.'" OR user_contact = "'.$this->DATA_CONTACT.'" ) AND user_password="'.$this->DATA_PASSWORD.'" ';
         $result = mysqli_query($this->con, $query);
         if ($result)
         {
