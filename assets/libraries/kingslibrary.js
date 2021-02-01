@@ -573,104 +573,144 @@ eg.insert_data('../backend/user/add_user.php','user_add_form')
 */
 function update_form(url,form_id)
 {
-	  var form = $('#'+form_id);
-	  var the_data=[];
-	  the_data=form.serializeArray();
 
-	  var output = [];
+	Swal.fire({
+	  title: 'Are you sure?',
+	  text: "Dear User, you are about to edit this data.",
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: 'Accept',
+	  cancelButtonText: "Decline"
+	}).then((result) => {
+	  if (result.isConfirmed) 
+	  {
+	      
+	        var form = $('#'+form_id);
+	        var the_data=[];
+	        the_data=form.serializeArray();
 
-	  the_data.forEach(function(item) {
-	    var existing = output.filter(function(v, i) {
-	      return v.name == item.name;
-	    });
-	    if (existing.length) {
-	      var existingIndex = output.indexOf(existing[0]);
-	      output[existingIndex].value = output[existingIndex].value.concat(item.value);
-	    } else {
-	      if (typeof item.value == 'string')
-	        item.value = [item.value];
-	      output.push(item);
-	    }
-	  });
+	        var output = [];
 
-	  /*console.log(output);*/
-	$.ajax({
-	    type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-	    url         : url, // the url where we want to POST
-	    data        : output, // our data object
-	    dataType    : 'json' // what type of data do we expect back from the server
-	})
-	// using the done promise callback
-	    .done(function(responseText) 
-	    {
-	    	// nreceive the response after sending the request
-	    	let response=Object.values(responseText);
-	      	response=response[0];
-	      	Swal.fire("Success", response, "success");
-	      	$('#'+form_id)[0].reset();
-	      	return;	
-	    })
-	    // using the fail promise callback
-	    .fail(function(responseText) 
-	    {
-	      //Server failed to respond - Show an error message
-	      let response=Object.values(responseText);
-	      response_value=Object.values(response[17]);
-	      response_value=response_value[0];
+	        the_data.forEach(function(item) {
+	          var existing = output.filter(function(v, i) {
+	            return v.name == item.name;
+	          });
+	          if (existing.length) {
+	            var existingIndex = output.indexOf(existing[0]);
+	            output[existingIndex].value = output[existingIndex].value.concat(item.value);
+	          } else {
+	            if (typeof item.value == 'string')
+	              item.value = [item.value];
+	            output.push(item);
+	          }
+	        });
 
-	      let response_code=response[18];
-	      let code_text=response[19];
+	        /*console.log(output);*/
+	      $.ajax({
+	          type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+	          url         : url, // the url where we want to POST
+	          data        : output, // our data object
+	          dataType    : 'json' // what type of data do we expect back from the server
+	      })
+	      // using the done promise callback
+	          .done(function(responseText) 
+	          {
+	          	// nreceive the response after sending the request
+	          	let response=Object.values(responseText);
+	            	response=response[0];
+	            	Swal.fire("Success", response, "success");
+	            	$('#'+form_id)[0].reset();
+	            	return;	
+	          })
+	          // using the fail promise callback
+	          .fail(function(responseText) 
+	          {
+	            //Server failed to respond - Show an error message
+	            let response=Object.values(responseText);
+	            response_value=Object.values(response[17]);
+	            response_value=response_value[0];
 
-	      Swal.fire(response_code+'\n'+code_text, response_value, "error");
-	      return;
-	    });
+	            let response_code=response[18];
+	            let code_text=response[19];
+
+	            Swal.fire(response_code+'\n'+code_text, response_value, "error");
+	            return;
+	          });
+	  }
+	  else
+	  {
+	  	Swal.fire("Cancelled", "Your data was not deleted", "error");
+	  }
+	});
+
 
 }
 
 
 /*
 This fetches the data belonging to a form through a click event or any other specified event and serializes it to be sent to an Api For processing
-it takes 2 arguments.
+it takes 1 argument.
 1. (url) the url (api) to receive and process the data
-2. (values) The ID of the html elements that contains the data to be processed separated by comma
 NB: Button must be a button or <a> tag with button properties 
-eg.insert_data('../backend/user/add_user.php','pin,'name')
+eg.insert_data('../backend/user/add_user.php?pin='+pin.value+'&name='name.value)
 
 
 */
 function update_values(url)
 {
 
-	  /*console.log(output);*/
-	$.ajax({
-	    type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-	    url         : url, // the url where we want to POST
-	    /*data        : the_values,*/ // our data object
-	    dataType    : 'json' // what type of data do we expect back from the server
-	})
-	// using the done promise callback
-	    .done(function(responseText) 
-	    {
-	    	// nreceive the response after sending the request
-	    	let response=Object.values(responseText);
-	      	response=response[0];
-	      	Swal.fire("Success", response, "success");
-	      	return;	
-	    })
-	    // using the fail promise callback
-	    .fail(function(responseText) 
-	    {
-	      //Server failed to respond - Show an error message
-	      let response=Object.values(responseText);
-	      response_value=Object.values(response[17]);
-	      response_value=response_value[0];
+	Swal.fire({
+	  title: 'Are you sure?',
+	  text: "Dear User, you are about to edit this data.",
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: 'Accept',
+	  cancelButtonText: "Decline"
+	}).then((result) => {
+	  if (result.isConfirmed) 
+	  {
+	       /*console.log(output);*/
+	     $.ajax({
+	         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+	         url         : url, // the url where we want to POST
+	         /*data        : the_values,*/ // our data object
+	         dataType    : 'json' // what type of data do we expect back from the server
+	     })
+	     // using the done promise callback
+	         .done(function(responseText) 
+	         {
+	         	// nreceive the response after sending the request
+	         	let response=Object.values(responseText);
+	           	response=response[0];
+	           	Swal.fire("Success", response, "success");
+	           	return;	
+	         })
+	         // using the fail promise callback
+	         .fail(function(responseText) 
+	         {
+	           //Server failed to respond - Show an error message
+	           let response=Object.values(responseText);
+	           response_value=Object.values(response[17]);
+	           response_value=response_value[0];
 
-	      let response_code=response[18];
-	      let code_text=response[19];
+	           let response_code=response[18];
+	           let code_text=response[19];
 
-	      Swal.fire(response_code+'\n'+code_text, response_value, "error");
-	      return;
-	    });
+	           Swal.fire(response_code+'\n'+code_text, response_value, "error");
+	           return;
+	         });
+	  }
+	  else
+	  {
+	  	Swal.fire("Cancelled", "Your data was not deleted", "error");
+	  }
+	});
+
+	  
 
 }
 
@@ -809,115 +849,6 @@ function remove_row(url,item_id,table_id,r)
 }
 
 
-function get_stats_cims()
-{
-
-	let regval=[];
-	let date_edited = [];
-	let date_called = [];
-	let isscrdz = [];
-	let callz = [];
-	let total_in_system = 0;
-	let total_issued = 0;
-	let total_unissued = 0;
-
-
-	//total in system
-	$("#tot_cards").html("<center><i class='fa fa-refresh fa-2x fa-spin'></i></center>");
-	//total claimed in system
-	$("#tot_claimed").html("<center><i class='fa fa-refresh fa-2x fa-spin'></i></center>");
-	//total issued
-	//$("#total_issued").html("<b>"+total_issued+"</b>");
-	$("#total_issued").html("<center><i class='fa fa-refresh fa-2x fa-spin'></i></center>");
-	//total yet to issued
-	$("#total_nissued").html("<center><i class='fa fa-refresh fa-2x fa-spin'></i></center>");
-
-	//my_claims
-	$("#my_claims").html("<center><i class='fa fa-refresh fa-2x fa-spin'></i></center>");
-	//my_edits
-	$("#my_edits").html("<center><i class='fa fa-refresh fa-2x fa-spin'></i></center>");
-	//my_issuance
-	$("#my_issuance").html("<center><i class='fa fa-refresh fa-2x fa-spin'></i></center>");
-
-
-
-	$.ajax({
-	 	    type        : 'GET', // define the type of HTTP verb we want to use (POST for our form)
-	 	    url         : '../apis/controllers/datagrams/datagrams.php', // the url where we want to POST
-	 		})
-	 		// using the done promise callback
-	 	    .done(function(responseText) 
-	 	    {
-	 	    	if (responseText=="") 
-	 	    	{
-	 	    		Swal.fire('Error', 'No Data Returned', "error");
-	 	    		return;
-	 	    	}
-
-	 	    	let regrecs=JSON.parse(responseText);
-	 	    	let len=regrecs.length-1;
-	 	    	let countz=0;
-	 	    	let totz=0;
-	 	    	let perc=0;
-
-	 	    	for (let i = 0; i <= len; i++) 
-	 	    	{
-
-	 	    	  total_in_system=regrecs[i].total_Cards;
-	 	    	  //total_issued=regrecs[i].total_issued;
-	 	    	  //total_issued_2020=(regrecs[i].total_issued-4615)*1;
-	 	    	  total_issued=(regrecs[i].total_issued)*1;
-	 	    	  total_unissued=regrecs[i].total_unissued;
-	 	    	  totz=(total_issued * 1)+(total_unissued * 1);
-
-	 	    	  my_claims=(regrecs[i].my_claims)*1;
-	 	    	  my_edits=(regrecs[i].my_edits)*1;
-	 	    	  my_issuance=(regrecs[i].my_issuance)*1;
-
-	 	    	}
-
-	 	    	//total in system
-	 	    	$("#tot_cards").html("<b>"+total_in_system+"</b>");
-
-	 	    	//total claimed in system
-	 	    	$("#tot_claimed").html("<b>"+totz+"</b>");
-	 	    	//percentage
-	 	    	$("#tclaim").css("width",((totz*100)/(total_in_system)));
-	 	    	$("#tclaim").prop("title",(round(((totz*100)/(total_in_system)),2))+"%");
-
-	 	    	//total issued
-	 	    	$("#total_issued").html("<b>"+total_issued+"</b>");
-	 	    	//percentage
-	 	    	$("#tissue").css("width",((total_issued*100)/(total_in_system)));
-	 	    	$("#tissue").prop("title",(round(((total_issued*100)/(total_in_system)),2))+"%");
-	 	    	
-
-	 	    	//total yet to issued
-	 	    	$("#total_nissued").html("<b>"+total_unissued+"</b>");
-	 	    	//percentage
-	 	    	$("#tnissue").css("width",((total_unissued*100)/(total_in_system)));
-	 	    	$("#tnissue").prop("title",(round(((total_unissued*100)/(total_in_system)),2))+"%");
-	 	    	
-
-	 	    	//my_claims
-	 	    	$("#my_claims").html("<b>"+my_claims+"</b>");
-	 	    	//my_edits
-	 	    	$("#my_edits").html("<b>"+my_edits+"</b>");
-	 	    	//my_issuance
-	 	    	$("#my_issuance").html("<b>"+my_issuance+"</b>");
-
-
-	 	    })
-	 	    // using the fail promise callback
-	 	    .fail(function(responseText) 
-	 	    {
-
-	 	      Swal.fire('Error', responseText, "error");
-	 	      return;
-	 	    });
-
-	
-}
 
 
 function round(value, decimals) 
@@ -927,287 +858,3 @@ function round(value, decimals)
 
 
 
-function check_pin(x,y,z)
-{
-
-	let pagelocaction=x;
-	let message_label=y;
-	let textbox_container=z;
-	//change the button state to loading
-	$("#"+message_label).html('<h2><center><i class="fa fa-refresh fa-spin fa-1x"></i></center></h2>');
-	$.ajax({
-		url : pagelocaction,
-		type : "POST",
-		success : function(data)
-		{
-			if (data=="") 
-			{
-				$("#thesname").show();
-				$("#thefname").show();
-				$("#thedob").show();
-				$("#thetel").show();
-				return;
-			}
-			if (data=="Found") 
-				{
-					$("#"+textbox_container).css('border-color','green');
-					$("#"+message_label).css('color','green');
-					$("#"+message_label).html('In System');
-					$("#thesname").hide();
-					$("#thefname").hide();
-					$("#thedob").hide();
-					$("#thetel").hide();
-					return;
-				}
-			if (data=="Not Found") 
-				{
-					$("#thesname").show();
-					$("#thefname").show();
-					$("#thedob").show();
-					$("#thetel").show();
-					$("#"+textbox_container).css('border-color','orange');
-					$("#"+message_label).css('color','orange');
-					$("#"+message_label).html('Not In System');
-					return;
-				}
-			if (data=="This Record Has Been Issued") 
-				{
-					$("#thesname").show();
-					$("#thefname").show();
-					$("#thedob").show();
-					$("#thetel").show();
-
-					$("#"+textbox_container).css('border-color','red');
-					$("#"+message_label).css('color','red');
-					$("#"+message_label).html(data);
-					return;
-
-				}
-		},
-		error : function(data) 
-		{
-			$("#thesname").show();
-			$("#thefname").show();
-			$("#thedob").show();
-			$("#thetel").show();
-			$("#"+message_label).html('');
-			return;
-		}
-	}
-	);
-}
-
-
-function not_in_system(x,y,z)
-{
-
-	let pagelocaction=x;
-	//set default value to attach to url as none
-	pagelocaction=pagelocaction+"?default_value=none";
-	let arrz=[];
-	let values_to_send=[];
-	let retz=y;
-	//split textboxvalues by the ","
-	arrz=Array.from(retz.split(","));
-	values_to_send=JSON.stringify(arrz)
-	values_to_send=JSON.parse(values_to_send);
-	let len=values_to_send.length;
-	//button id
-	let thebtn="#"+z;
-	let btnz=$(thebtn).html();
-	//change the button state to loading
-	$(thebtn).html('<i class="fa fa-refresh fa-spin"></i>');
-	//check for empty values
-	for (let i = 0; i <= len-1; i++) 
-	{	
-//		if ($("#"+values_to_send[i]).val()=="") {Swal.fire('warning',values_to_send[i]+" is empty",'warning');$(thebtn).html(btnz);return;}else{pagelocaction=pagelocaction+'&'+values_to_send[i]+'='+$("#"+values_to_send[i]).val();}
-		pagelocaction=pagelocaction+'&'+values_to_send[i]+'='+$("#"+values_to_send[i]).val();
-	
-	}
-
-	$.ajax({
-		url : pagelocaction,
-		type : "POST"})
-		.done(function(responseText) 
-	 	{
-	 	   let data=responseText;
-	 	   if (data=="") 
-	 	   {
-	 	   	$("#thesname").show();
-	 	   	$("#thefname").show();
-	 	   	$("#thedob").show();
-	 	   	$("#thetel").show();
-	 	   	$(thebtn).html(btnz);
-	 	   	$('#pinz').focus();
-	 	   	Swal.fire('No Data Returned',data,'warning');$(thebtn).html(btnz);
-	 	   }
-	 	   if (data=="This record has been transfered to your station." || data=="Record Added Successfully") 
-	 	   {
-	 	   	$('#pinz').val('GHA-');$('#sn').val('');$('#dob').val('');$('#cnumz').val('');$('#fn').val('');$('#box_num').val('');
-	 	   	$("#pinz").css('border-color','black');$("#is_in").css('color','black');$("#is_in").html('');
-	 	   	$("#thesname").show();
-	 	   	$("#thefname").show();
-	 	   	$("#thedob").show();
-	 	   	$("#thetel").show();
-	 	   	$(thebtn).html(btnz);
-	 	   	$('#pinz').focus();
-	 	   	Swal.fire('Success',data,'success');
-	 	   }
-	 	   else
-	 	   {
-	 	   	//$("#pinz").css('border-color','black');$("#is_in").css('color','black');$("#is_in").html('');return;
-	 	   	$("#thesname").show();
-	 	   	$("#thefname").show();
-	 	   	$("#thedob").show();
-	 	   	$("#thetel").show();
-	 	   	$(thebtn).html(btnz);
-	 	   	$('#pinz').focus();
-	 	   	Swal.fire('error',data,'error');
-	 	   }
-	 	   
-	 	   $(thebtn).html(btnz); 	
-
-	 	})
-	 	// using the fail promise callback
-	 	.fail(function(responseText) 
-	 	{
-			Swal.fire('Error', responseText, "error");
-	 	    return;
-	 	});
-	$(thebtn).html(btnz);
-}
-
-
-function new_request(x,y)
-{
-	let thebtn="#"+y;
-	let btnz=$(thebtn).html();
-	let z=btnz;
-
-	//change the location state to loading
-	$(thebtn).html('<center><i class="fa fa-refresh fa-3x fa-spin"></i></center>');
-
-	  /*console.log(output);*/
-	$.ajax({
-	    type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-	    url         : x, // the url where we want to POST
-	    /*data        : the_values,*/ // our data object
-	    dataType    : 'json' // what type of data do we expect back from the server
-	})
-	// using the done promise callback
-	    .done(function(responseText) 
-	    {
-	    	// nreceive the response after sending the request
-	    	let response=Object.values(responseText);
-	      	response=response[0];
-	      	Swal.fire("Success", response, "success");
-
-	      	myTimer=setInterval(my_request,10000);
-	      	return;	
-	    })
-	    // using the fail promise callback
-	    .fail(function(responseText) 
-	    {
-	    	$(thebtn).html(btnz);
-		    //Server failed to respond - Show an error message
-		    let response=Object.values(responseText);
-		    response_value=Object.values(response[17]);
-		    response_value=response_value[0];
-
-		    let response_code=response[18];
-		    let code_text=response[19];
-
-		    Swal.fire(response_code+'\n'+code_text, response_value, "error");
-		    return;
-	    });
-}
-
-function my_request()
-{
-
-	$.ajax({
-		url : '../../cims/apis/controllers/requests/my_center_request.php',
-		type : "POST",
-		success : function(data)
-		{
-			if (data=="Request Approved") 
-			{	
-				clearInterval(my_request);
-				let thebtn="#the_place";
-				$(thebtn).html('<center><h3>Kindly refresh page</h3></center>');
-				Swal.fire('','Your Request For A Center Change Has Been Approved.Kindly Refresh Page For Changes To Reflect','success');
-					
-			}
-			else if (data=="Request Rejected") 
-			{
-				clearInterval(my_request);
-				Swal.fire('','Your Request Is Rejected.','error');
-
-				let thebtn="#the_place";
-				$(thebtn).html('<center><h3>Kindly refresh page</h3></center>');
-					
-			}
-			else
-			{
-				
-			}
-
-		},
-		error : function(data) 
-		{	
-			clearInterval(my_request);
-			let thebtn="#the_place";
-			$(thebtn).html('<center><h3>Kindly refresh page</h3></center>');
-	      	//Server failed to respond - Show an error message
-	      	let response=Object.values(responseText);
-	      	response_value=Object.values(response[17]);
-	      	response_value=response_value[0];
-
-	      	let response_code=response[18];
-	      	let code_text=response[19];
-
-	      	Swal.fire(response_code+'\n'+code_text, response_value, "error");
-	      	return;
-		}
-	});
-}
-
-
-
-
-function approve_request(v,w,x,y,z,k)
-{
-
-	//button id
-	let thebtn="#"+k;
-	let btnz=$(thebtn).html();
-	//change the button state to loading
-	$(thebtn).html('<i class="fa fa-refresh fa-spin"></i>');
-	let theurl='../apis/controllers/requests/approve_center_change.php?pinz='+v+'&center='+w+'&center_name='+x+'&center_statz='+y+'&request_statz='+z;
-
-	$.ajax({
-		url : theurl,
-		type : "POST"
-	})
-	// using the done promise callback
-	    .done(function(data) 
-	    {
-	    	$(thebtn).html(btnz);
-	    	// nreceive the response after sending the request
-	    	if (data=="Success") {Swal.fire('Success','Request Updated Successfully','success');$('#show_n_request').click();}
-	    	else if (data=="Failed") {Swal.fire('Error','Error Occured While approving request','warning');}
-	    	else if (data=="Approval Failed.Error Adding New Center") {Swal.fire('Error','Approval Failed.Error Adding New Center','error');}
-	    	else{Swal.fire('',data,'warning');}
-	      	return;	
-	    })
-	    // using the fail promise callback
-	    .fail(function(data) 
-	    {
-	      //Server failed to respond - Show an error message
-	      $(thebtn).html(btnz);
-	      Swal.fire('error', data, "error");
-	      return;
-	    });
-
-	
-}
