@@ -1,0 +1,66 @@
+{
+    "name": "kingslibrary",
+    "version": "1.0.0",
+    "description": "A lightweight, event-driven JavaScript utility library providing automatic functionality through CSS classes. Framework-agnostic and works with Bootstrap, Tailwind, or any CSS framework.",
+    "main": "dist/kingslibrary.umd.js",
+    "module": "dist/kingslibrary.esm.js",
+    "unpkg": "dist/kingslibrary.min.js",
+    "jsdelivr": "dist/kingslibrary.min.js",
+    "types": "dist/kingslibrary.d.ts",
+    "files": [
+        "dist/"
+    ],
+    "keywords": [
+        "javascript",
+        "utility",
+        "framework-agnostic",
+        "css-classes",
+        "event-driven",
+        "ajax",
+        "forms",
+        "datatables",
+        "notifications",
+        "bootstrap",
+        "tailwind"
+    ],
+    "author": {
+        "name": "KingsLibrary Team",
+        "url": "https://github.com/kingkology/kingslibrary"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/kingkology/kingslibrary#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kingkology/kingslibrary.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kingkology/kingslibrary/issues"
+    },
+    "type": "module",
+    "scripts": {
+        "build": "vite build && npm run build:lib",
+        "build:lib": "vite build --config vite.lib.config.js",
+        "dev": "vite dev",
+        "version:patch": "npm version patch",
+        "version:minor": "npm version minor", 
+        "version:major": "npm version major",
+        "prepublishOnly": "npm run build:lib"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.6",
+        "axios": "^1.1.2",
+        "bootstrap": "^5.2.3",
+        "laravel-vite-plugin": "^0.8.0",
+        "sass": "^1.56.1",
+        "sweetalert2": "^11.7.3",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "jquery": "^3.6.3",
+        "datatables.net": "^1.13.2",
+        "datatables.net-bs5": "^1.13.2",
+        "datatables.net-buttons": "^2.3.4",
+        "datatables.net-buttons-bs5": "^2.3.4",
+        "font-awesome": "^4.7.0"
+    }
+}

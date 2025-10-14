@@ -1,0 +1,136 @@
+# Changelog
+
+All notable changes to KingsLibrary will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2025-10-05
+
+### Initial Release - Event-Driven Architecture
+
+KingsLibrary provides modern, event-driven architecture using CSS classes for automatic functionality binding.
+
+### Added
+All notable changes to KingsLibrary will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [3.0.0] - 2024-01-15
+
+###  Major Release - Event-Driven Architecture
+
+This is a complete rewrite of KingsLibrary with a focus on modern, event-driven architecture using CSS classes for automatic functionality binding.
+
+### Added
+
+- **Event-Driven Design**: All utilities now work through CSS classes with automatic event delegation
+- **Framework Agnostic**: Works with Bootstrap, Tailwind, Bulma, or any CSS framework
+- **NPM Package**: Proper package structure for distribution via NPM and CDN
+- **TypeScript Definitions**: Full TypeScript support with detailed type definitions
+- **Modular Architecture**: Clean separation of utilities with `BaseUtility` class
+- **Zero Configuration**: Works out of the box with sensible defaults
+
+#### New Utilities
+- `FormUtility`: AJAX forms with validation (`.ajax-form`, `.validate-field`)
+- `TableUtility`: DataTables integration with export (`.datatable-init`, `.export-excel`)
+- `NotificationUtility`: Toast notifications and alerts (`.toast-trigger`, `.alert-trigger`)
+- `PasswordUtility`: Password strength and visibility (`.password-strength`, `.password-toggle`)
+- `MediaUtility`: File uploads and drag-drop (`.file-upload`, `.file-drop-zone`)
+- `ActionUtility`: Generic AJAX actions (`.ajax-action`, `.confirm-action`)
+- `ImageUtility`: Image previews and galleries (`.image-preview`, `.image-gallery`)
+- `ChatUtility`: Real-time messaging interface (`.chat-container`, `.chat-send`)
+- `PageletUtility`: Dynamic content loading (`.pagelet-trigger`, `.pagelet-clear`)
+
+#### Build System
+- **Vite Configuration**: Modern build system with multiple output formats
+- **UMD Build**: `kingslibrary.umd.js` for AMD/CommonJS/Global usage
+- **ES Module Build**: `kingslibrary.esm.js` for modern bundlers
+- **IIFE Build**: `kingslibrary.min.js` for direct browser usage
+- **Source Maps**: Full source map support for debugging
+- **Minification**: Optimized builds with Terser
+
+#### Documentation
+- **Comprehensive README**: Framework integration examples and API reference
+- **Interactive Playground**: Live demonstration environment
+- **CDN Ready**: Available via jsDelivr and unpkg
+- **Migration Guide**: Backward compatibility and migration path from v2.x
+
+### 🔄 Changed
+
+- **Breaking**: Function-based API replaced with CSS class-based approach
+- **Breaking**: Manual initialization replaced with automatic event delegation
+- **Improved**: Better error handling and validation feedback
+- **Enhanced**: More intuitive data attribute configuration
+- **Modernized**: ES6+ syntax with backward compatibility
+
+### 🔧 Migration from v2.x
+
+#### Before (v2.x)
+```javascript
+// Manual function calls required
+insert_data('../api/user/create', 'user_form');
+checknewpass('password1', 'password2', 'error_msg');
+ExportToExcel('myTable');
+```
+
+#### After (v3.0)
+```html
+<!-- Automatic functionality through CSS classes -->
+<form class="ajax-form" data-url="/api/user/create">
+    <input name="name" class="validate-field" required>
+    <button type="submit">Create User</button>
+</form>
+
+<input type="password" class="password-strength">
+<button class="export-excel" data-table="#myTable">Export Excel</button>
+```
+
+### 📦 Distribution
+
+- **NPM**: `npm install kingslibrary`
+- **CDN (jsDelivr)**: `https://cdn.jsdelivr.net/npm/kingslibrary@3/dist/kingslibrary.min.js`
+- **CDN (unpkg)**: `https://unpkg.com/kingslibrary@3/dist/kingslibrary.min.js`
+
+### 🏗️ Technical Details
+
+- **Dependencies**: jQuery 3.6+ (external)
+- **Browser Support**: Modern browsers (ES6+)
+- **Bundle Size**: ~62KB minified, ~17KB gzipped
+- **License**: MIT
+
+### 🔧 Configuration
+
+```javascript
+KingsLibrary.config({
+    apiBaseUrl: '/api',
+    notifications: { position: 'top-right' },
+    forms: { validateOnBlur: true },
+    tables: { pageLength: 25 },
+    debug: false
+});
+```
+
+### 🎯 Backward Compatibility
+
+All v2.x functions are still available for gradual migration:
+- `Toastz()` - Legacy notification function
+- `ExportToExcel()` - Legacy export function  
+- `insert_data()` - Legacy form submission
+- `checknewpass()` - Legacy password validation
+
+---
+
+## Previous Versions
+
+### [2.x] - Legacy Version
+- Function-based API
+- Manual initialization required
+- Limited framework integration
+- Basic utilities for forms, tables, and notifications
+
+### [1.x] - Initial Release
+- Basic JavaScript utilities
+- Simple function-based approach
+- Limited feature set

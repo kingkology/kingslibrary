@@ -1,0 +1,44 @@
+# Laravel-specific files
+app/
+bootstrap/
+config/
+database/
+public/
+routes/
+storage/
+vendor/
+tests/
+
+# Development files
+resources/views/
+resources/sass/
+.env*
+.vscode/
+.idea/
+*.log
+*.tmp
+
+# Build files (except dist)
+node_modules/
+.vite/
+vite.config.js
+public/build/
+
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# Documentation site specific
+artisan
+composer.json
+composer.lock
+phpunit.xml
+server.php
+
+# Keep only library essentials:
+# - dist/ (built files)
+# - README.md
+# - LICENSE
+# - CHANGELOG.md
+# - package.json

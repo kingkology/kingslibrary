@@ -1,0 +1,17 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app-69909a22.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/kingslibrary/core.js": {
+    "file": "assets/core-aaf6cb33.js",
+    "isEntry": true,
+    "src": "resources/js/kingslibrary/core.js"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-6339391e.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  }
+}
